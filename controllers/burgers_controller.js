@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
+router.post("/burgers", function(req, res) {
   burger.insertOne([
     "burger_name", "devoured"
   ], [
@@ -27,13 +27,13 @@ router.post("/", function(req, res) {
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-    burger.updateOne(req.params.id, function(result) {
-        if(result.changedRows === 0) {
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
-    });
+    var condition = 'id = ' + req.params.id;
+
+  burger.updateOne({
+    devoured: true
+  }, condition, function(data) {
+    res.redirect('/');
+  });
 });
 
 // Export routes for server.js to use.
