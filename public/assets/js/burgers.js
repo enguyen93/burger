@@ -28,6 +28,7 @@ $(function () {
             type: "POST",
             data: data
         }).then(function (res) {
+            console.log("burger has been made with POST");
             location.reload();
         });
     });
