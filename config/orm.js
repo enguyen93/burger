@@ -11,13 +11,13 @@ var orm = {
     });
   },
 
-  insertOne: function (tableInput, vals, cb) {
-    connection.query("INSERT INTO "+tableInput+" (burger_name) VALUES ("+vals+");", function (err, result) {
+  insertOne: function (tableInput, col, vals, cb) {
+    connection.query(`INSERT INTO ${tableInput} (${col}) VALUES ('${vals}')`, function (err, result) {
       if (err) {
         throw err;
       }
 
-      cb(result);
+      cb(result)
     });
   },
   updateOne: function (tableInput, condition, cb) {

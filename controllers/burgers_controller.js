@@ -16,15 +16,12 @@ router.get("/", function (req, res) {
   });
 });
 
-router.post("/burgers/create", function (req, res) {
-  burger.insertOne(req.body.name), function (result) {
-    if (result.affectedRows === 0) {
-      return res.status(404).end();
-    } else {
-      res.json({ id: result.insertId });
-    };
-  };
-});
+router.post("/burgers/create", function(req, res) {
+    burger.insertOne(req.body.name, function(result) {
+      console.log(result);
+      res.json({id: result.insertId});
+    });
+  });
 
 router.put("/api/burgers/:id", function (req, res) {
   burger.updateOne(req.params.id, function (result) {
