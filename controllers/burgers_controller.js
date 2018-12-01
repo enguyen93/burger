@@ -16,6 +16,12 @@ router.get("/", function(req, res) {
   });
 });
 
+router.post("/burgers/create", function(req, res) {
+    burger.insertOne(req.body.name), function(result) {
+      console.log(result);
+      res.json({id: result.insertId});
+    }
+
 router.put("/api/burgers/:id", function(req, res) {
   burger.updateOne(req.params.id, function(result) {
     console.log(result);
@@ -23,11 +29,6 @@ router.put("/api/burgers/:id", function(req, res) {
   });
 });
 
-router.post("/burgers/create", function(req, res) {
-    burger.insertOne(req.body.burger_name), function(result) {
-      console.log(result);
-      res.redirect('/');
-    }
 });
 
 // Export routes for server.js to use.

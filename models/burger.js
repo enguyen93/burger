@@ -8,9 +8,11 @@ var burger = {
     });
   },
   // The variables cols and vals are arrays.
-  insertOne: function(name, cb) {
-    orm.selectAll("burgers", name, cb);
-  },
+  insertOne: function(vals, cb){
+    orm.insertOne("burgers", "burger_name", vals, function(res) {
+        cb(res);
+    });
+},
   updateOne: function(id, cb) {
     orm.updateOne("burgers", id, cb);
   }

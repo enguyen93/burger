@@ -2,7 +2,7 @@ $(function () {
     $(".smash-me").on("click", function (event) {
         event.preventDefault();
         var id = $(this).data("id");
-
+        console.log("smash button is being hit");
         $.ajax("/api/burgers/" + id, {
             type: "PUT"
 
@@ -14,6 +14,12 @@ $(function () {
     $(".addBurgerButton").on("click", function (event) {
         event.preventDefault();
         var newBurger = $("#newBurger").val().trim();
+
+        if(newBurger === ""){
+            console.log("flag");
+            return;
+        }
+
         let data = {
             name: newBurger
         }
